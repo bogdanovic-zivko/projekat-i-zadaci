@@ -1,0 +1,254 @@
+Napraviti klasu Racunar koja ima:
+-tip
+-cenu
+-boolean da li moze da se poruci online
+Napraviti klasu Software koja nasledjuje klasu Racunar i ima:
+-naziv
+-boolean da li je integrisan ili ne
+-int meseci koliko cesto ima update
+Napraviti klasu Hardware koja nasledjuje klasu Racunar i ima:
+-naziv
+-cenu
+-boolean da li se nalazi unutar kucista ili ne
+Napraviti klasu Monitor koja nasledjuje klasu Hardware i ima:
+-double inch
+-String rezolucija
+-cena
+Podatke svake klase stampati u glavnoj klasi
+update: kod stampanja Monitor, Hardware i Software klase koristiti i neki atribut roditeljske klase. (super.get...)
+
+
+package Racunar;
+
+public class Racunar {
+    private String tip;
+    private int cena;
+    private boolean onlineKupovina;
+
+    public Racunar(String tip, int cena, boolean onlineKupovina) {
+        this.tip = tip;
+        this.cena = cena;
+        this.onlineKupovina = onlineKupovina;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
+
+    public int getCena() {
+        return cena;
+    }
+
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
+
+    public boolean isOnlineKupovina() {
+        return onlineKupovina;
+    }
+
+    public void setOnlineKupovina(boolean onlineKupovina) {
+        this.onlineKupovina = onlineKupovina;
+    }
+
+    public void stampanje() {
+        System.out.print(this.tip + " racunar kosta " + this.cena + " dinara i");
+        if (this.onlineKupovina) {
+            System.out.print("");
+        } else {
+            System.out.print(" ne");
+        }
+        System.out.println(" moze da se kupi online.");
+    }
+
+
+}
+
+------------------------------------------------------------------------
+package Racunar;
+
+public class Software extends Racunar{
+    private String naziv;
+    private boolean integrisan;
+    private int update;
+
+    public Software(String tip, int cena, boolean onlineKupovina, String naziv, boolean integrisan, int update) {
+        super(tip, cena, onlineKupovina);
+        this.naziv = naziv;
+        this.integrisan = integrisan;
+        this.update = update;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public boolean isIntegrisan() {
+        return integrisan;
+    }
+
+    public void setIntegrisan(boolean integrisan) {
+        this.integrisan = integrisan;
+    }
+
+    public int getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(int update) {
+        this.update = update;
+    }
+
+    public void stampanje() {
+        System.out.print(this.naziv + " je deo " + super.getTip() + " racunara. Update ima na svakih " + this.update + " dana i ");
+        if (this.integrisan) {
+            System.out.print("jeste ");
+        } else {
+            System.out.print("nije ");
+        }
+        System.out.println("integrisan u racunar.");
+
+    }
+}
+
+----------------------------------------------------------------------
+package Racunar;
+
+public class Hardware extends Racunar{
+
+    private String naziv;
+    private int cena;
+    private boolean unutrasnjiDeo;
+
+    public Hardware(String tip, int cena, boolean onlineKupovina, String naziv, int cena1, boolean unutrasnjiDeo) {
+        super(tip, cena, onlineKupovina);
+        this.naziv = naziv;
+        this.cena = cena1;
+        this.unutrasnjiDeo = unutrasnjiDeo;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    @Override
+    public int getCena() {
+        return cena;
+    }
+
+    @Override
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
+
+    public boolean isUnutrasnjiDeo() {
+        return unutrasnjiDeo;
+    }
+
+    public void setUnutrasnjiDeo(boolean unutrasnjiDeo) {
+        this.unutrasnjiDeo = unutrasnjiDeo;
+    }
+
+    public void stampanje() {
+        System.out.print(this.naziv + " kosta " + this.cena + " dinara i ");
+        if (this.unutrasnjiDeo) {
+            System.out.print("jeste");
+        } else {
+            System.out.print("nije");
+        }
+        System.out.println(" unutrasnji deo " + super.getTip() + " racunara.");
+    }
+}
+
+-----------------------------------------------------------------------------
+package Racunar;
+
+public class Monitor extends Hardware{
+
+    private double inch;
+    private String rezolucija;
+    private int cena;
+
+    public Monitor(String tip, int cena, boolean onlineKupovina, String naziv, int cena1, boolean unutrasnjiDeo, double inch, String rezolucija, int cena2) {
+        super(tip, cena, onlineKupovina, naziv, cena1, unutrasnjiDeo);
+        this.inch = inch;
+        this.rezolucija = rezolucija;
+        this.cena = cena2;
+    }
+
+    public double getInch() {
+        return inch;
+    }
+
+    public void setInch(double inch) {
+        this.inch = inch;
+    }
+
+    public String getRezolucija() {
+        return rezolucija;
+    }
+
+    public void setRezolucija(String rezolucija) {
+        this.rezolucija = rezolucija;
+    }
+
+    @Override
+    public int getCena() {
+        return cena;
+    }
+
+    @Override
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
+
+    public void stampanje() {
+        System.out.println("Monitor ima " + this.inch + " inca sa " + this.rezolucija + " rezolucijom. Kosta " + this.cena + " dinara. Moze se nakaciti na " + super.getTip() + " racunar.");
+
+    }
+}
+
+----------------------------------------------------------------------------
+package Racunar;
+
+public class GlavnaKlasa {
+    public static void main(String[] args) {
+
+        Racunar r1 = new Racunar("Desktop", 90000, false);
+        r1.stampanje();
+
+        Software s1 = new Software("Desktop", 87000, true, "Antivirus", false, 30);
+        s1.stampanje();
+
+        Hardware h1 = new Hardware("Laptop", 120000, true, "Zvucnik", 1800, false);
+        h1.stampanje();
+
+        Monitor m1 = new Monitor("All in one", 209000, false, "Asus", 14000, false, 19.5, "1920x1080p", 12000);
+        m1.stampanje();
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

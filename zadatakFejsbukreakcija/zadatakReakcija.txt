@@ -1,0 +1,132 @@
+Kreirati klasu Reakcija koja ima tip reakcije (smajli, like, srce), ime i prezime korisnika koji je reagovao, getere, setere i konstruktore.
+Kreirati klasu FacebookPost koja ima:
+ime i prezime korisnika koji je stavio oglas
+tekst objave
+listu reakcija
+metodu reaguj, koja dodaje reakciju u niz
+privatnu metodu koja vraca broj reakcija odredjenog tipa (prosledjuje se tip reakcije koji moze da bude smajli, like ili srce)
+metodu stampaj koja stampa info o postu u formatu:
+ime i prezime
+tekst objave
+smajli 10 | like 15 | srce 2
+
+
+package FacebookPost;
+
+public class MainClass {
+    public static void main(String[] args) {
+
+        Reaction r1 = new Reaction("Smajli", "Petar Petrovic");
+        Reaction r2 = new Reaction("Smajlic", "Pera Kojot");
+        Reaction r3 = new Reaction("Srce", "Ptica Trkacica");
+        Reaction r4 = new Reaction("Like", " ");
+        Reaction r5 = new Reaction("Like", "Djodje");
+
+        Facebook f1 = new Facebook("Nikola Jokic", "Oce neko na basket..");
+        f1.setReactions(r1);
+        f1.setReactions(r2);
+        f1.setReactions(r3);
+        f1.setReactions(r4);
+        f1.setReactions(r5);
+        f1.stampanje();
+
+
+
+    }
+}
+-----------------------------------------------------------------------
+
+package FacebookPost;
+
+import java.util.ArrayList;
+
+public class Facebook {
+
+    private String imeiPrezime;
+    private String tekstObjave;
+    private ArrayList<Reaction> reactions;
+
+    public Facebook(String imeiPrezime, String tekstObjave) {
+        this.imeiPrezime = imeiPrezime;
+        this.tekstObjave = tekstObjave;
+        this.reactions = new ArrayList<Reaction>();
+    }
+
+    public void setImeiPrezime(String imeiPrezime) {
+        this.imeiPrezime = imeiPrezime;
+    }
+
+    public String getImeiPrezime() {
+        return imeiPrezime;
+    }
+
+    public void setTekstObjave(String tekstObjave) {
+        this.tekstObjave = tekstObjave;
+    }
+
+    public String getTekstObjave() {
+        return tekstObjave;
+    }
+
+    public ArrayList<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(Reaction a) {
+        this.reactions.add(a);
+    }
+
+    private int prebrojavanje(String tipReakcije) {
+        int brojac = 0;
+        for (int i = 0 ; i < reactions.size() ; i++){
+            if (reactions.get(i).getTipReakcije().equals(tipReakcije)){
+                brojac++;
+            }
+            } return brojac;
+        }
+
+        public void stampanje() {
+            System.out.println(this.imeiPrezime);
+            System.out.println(this.tekstObjave);
+            System.out.println("Smajli " +
+                    prebrojavanje("Smajli") + " | Like " +
+                    prebrojavanje("Like") + " | Srce " +
+                    prebrojavanje("Srce"));
+        }
+
+    }
+-----------------------------------------------------------------------------
+
+package FacebookPost;
+
+public class Reaction {
+    private String tipReakcije;
+    private String imeiPrezime;
+
+    public Reaction(String tipReakcije, String imeiPrezime) {
+        this.imeiPrezime = imeiPrezime;
+        this.tipReakcije = tipReakcije;
+    }
+
+    public void setTipReakcije(String tipReakcije) {
+        this.tipReakcije = tipReakcije;
+    }
+
+    public String getTipReakcije() {
+        return tipReakcije;
+    }
+
+    public void setImeiPrezime(String imeiPrezime) {
+        this.imeiPrezime = imeiPrezime;
+    }
+
+    public String getImeiPrezime() {
+        return imeiPrezime;
+    }
+
+
+}
+
+
+
+

@@ -1,0 +1,118 @@
+Kreirati klasu Sastojak koja ima naziv, cenu, getere i setere, konstruktore, metodu za stampanje koja stampa u formatu - naziv - cena.din
+-Kreirati klasu Pasta koja ima:
+listu sastojaka
+metodu dodavanja sastojaka
+(metodu za brisanje sastojaka - bonus)
+U metodu se salje naziv sastojka koji se brise
+defaultni konstruktor
+metodu koja racuna cenu paste, tako sto sumira cene svih sastojaka
+metodu za stampu koja stampa podatke u formatu:
+Pasta je sa sastojcima:
+naziv - cena.din
+naziv - cena.din
+Cena paste je cena.din
+
+
+package Pasta;
+
+public class GlavnaKlasa {
+    public static void main(String[] args) {
+
+        Sastojak s1 = new Sastojak("Fusili", 200);
+        Sastojak s2 = new Sastojak("Spageti", 190);
+        Sastojak s3 = new Sastojak("Pene", 180);
+        Sastojak s4 = new Sastojak("Bolonjeze sos", 80);
+        Sastojak s5 = new Sastojak("Milaneze sos", 70);
+        //s1.stampanjeSastojaka();
+        //s5.stampanjeSastojaka();
+
+        Pasta p1 = new Pasta();
+        p1.dodavanjeSastojaka(s3);
+        p1.dodavanjeSastojaka(s1);
+        p1.dodavanjeSastojaka(s2);
+        p1.stampanjePaste();
+        System.out.println("------------------");
+        p1.brisanjeSastojaka(s2);
+        p1.stampanjePaste();
+    }
+}
+----------------------------------------------------------------
+package Pasta;
+
+import java.util.ArrayList;
+
+public class Pasta {
+
+    private ArrayList<Sastojak> listaSastojaka;
+
+    public Pasta() {
+        listaSastojaka = new ArrayList<Sastojak>();
+    }
+
+    public void dodavanjeSastojaka(Sastojak a){
+        this.listaSastojaka.add(a);
+    }
+
+    public int sumaCene() {
+        int suma = 0;
+        for (int i = 0 ; i < listaSastojaka.size() ; i++) {
+            suma = suma + this.listaSastojaka.get(i).getCena();
+        } return suma;
+    }
+
+    public void brisanjeSastojaka(Sastojak b){
+        for (int i = 0 ; i < listaSastojaka.size() ; i++) {
+            if (this.listaSastojaka.get(i).equals(b)) {
+                this.listaSastojaka.remove(i);
+            }
+        }
+    }
+
+    public void stampanjePaste(){
+        System.out.println("Pasta je sa sastojcima:");
+        for (int i = 0 ; i < listaSastojaka.size() ; i++) {
+            this.listaSastojaka.get(i).stampanjeSastojaka();
+        }
+        System.out.println("Cena paste je: " + sumaCene() + " dinara.");
+    }
+
+
+
+
+
+}
+------------------------------------------------------------------
+
+package Pasta;
+
+public class Sastojak {
+    private int cena;
+    private String naziv;
+
+    public Sastojak(String naziv, int cena) {
+        this.cena = cena;
+        this.naziv = naziv;
+    }
+
+    public int getCena() {
+        return cena;
+    }
+
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public void setNaziv(String naziv) {
+        this.naziv = naziv;
+    }
+
+    public void stampanjeSastojaka() {
+        System.out.println(this.naziv + " - " + this.cena + " din.");
+    }
+}
+
+-------------------------------------------------------------------

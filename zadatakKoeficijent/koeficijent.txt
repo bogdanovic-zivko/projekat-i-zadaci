@@ -1,0 +1,233 @@
+Program prima 5 privatnih atributa (jmbg, ime i prezime, broj dece, stepen strucne spreme i radni staz).
+Potrebno je da nam program izracuna platu, da li je korisniku odobren kredit na osnovu plate i koliko ima slobodnih dana.
+Platu racunamo tako sto saberemo koeficijent i minuli rad, to pomnozimo sa 10 000 i na to dodamo 2500.
+Koeficijent racunamo zavisno od stepena strucne spreme. Za stepen 1 koeficijent je 1.03, za 2 je 1.65, za 3 je 2, za 4 je 2.27, za 5 je 2.88, za 6 je 3.09, za 7 je 3.40, za 8 je 4.12.
+Minuli rad je 0.05 ako je radni staz ispod 10 godina, 0.75 ako je ispod 20 godina, 1 ako je preko 20 godina.
+Kredit je odobren ako korisnik ima platu preko 50 000.
+Korisnik ima slobodnih dana zavisno od broja dece, svako ima 22 slobodna dana, 
+a ljudi sa decom imaju dodatna 2 dana po detetu.
+
+package KlaseRadnik;
+
+public class RadnikZadatak {
+    private long jmbg;
+    private String imeIPrezime;
+    private int stepenStrucneSpreme;
+    private int radniStaz;
+    private int brojDece;
+
+    public RadnikZadatak(long jmbg, String imeIPrezime, int stepenStrucneSpreme, int radniStaz, int brojDece){
+        this.brojDece = brojDece;
+        this.imeIPrezime = imeIPrezime;
+        this.radniStaz = radniStaz;
+        this.stepenStrucneSpreme = stepenStrucneSpreme;
+        this.jmbg = jmbg;
+    }
+
+    public double koeficijent() {
+        double koeficijent = 0;
+        switch (this.stepenStrucneSpreme){
+            case 1:
+                koeficijent = 1.03;
+                break;
+            case 2:
+                koeficijent = 1.65;
+                break;
+            case 3:
+                koeficijent = 2.00;
+                break;
+            case 4:
+                koeficijent = 2.27;
+                break;
+            case 5:
+                koeficijent = 2.88;
+                break;
+            case 6:
+                koeficijent = 3.09;
+                break;
+            case 7:
+                koeficijent = 3.40;
+                break;
+            case 8:
+                koeficijent = 4.12;
+                break;
+        } return koeficijent;
+    }
+
+    public double minuliRad() {
+        if (this.radniStaz < 10) {
+            return 0.05;
+        } else if (this.radniStaz < 20) {
+            return 0.75;
+        } else {
+            return 1.00;
+        }
+    }
+
+    public double plata() {
+        double k = this.koeficijent();
+        double mr = this.minuliRad();
+        return (k + mr) * 10000 + 2500;
+    }
+
+    public boolean kreditOdobren() {
+        double plata = this.plata();
+        return plata > 50000;
+    }
+
+    public int slobodniDani() {
+        return (this.brojDece * 2) + 22;
+    }
+
+    public void stampanje() {
+        System.out.println("Zaposleni " + this.imeIPrezime + " sa maticnim brojem " + this.jmbg + " ima platu " + this.plata()
+        + " za " + this.radniStaz + " godina radnog staza. Zaposleni je " + this.stepenStrucneSpreme + ". stepen strucne spreme. " +
+                "Da li je kredit odobren? " + this.kreditOdobren() + ". I ima " + this.slobodniDani() + " slobodnih dana godisnje." );
+    }
+
+}
+----------------------------------------------------------------------------------------
+package KlaseRadnik;
+
+public class GlavnaKlasaZadatak {
+    public static void main(String[] args) {
+
+        RadnikZadatak r1 = new RadnikZadatak(1234567890123L, "Radnik Radic", 3, 4, 3);
+        r1.stampanje();
+        RadnikZadatak r2 = new RadnikZadatak(1231231231231L, "Milica Jovanovic", 8, 21, 4);
+        r2.stampanje();
+
+    }
+}
+---------------------------------------------------------------------------
+Ovo je jedan nacin, drugi nacin ako cemo raditi preko praznog konstruktora:
+
+package KlaseRadnik;
+
+public class RadnikAlt {
+    private long jmbg;
+    private String imeIPrezime;
+    private int brojDece;
+    private int stepenStrucneSpreme;
+    private int radniStaz;
+
+    public RadnikAlt() {
+
+    }
+
+    public void setJmbg(long jmbg) {
+        this.jmbg = jmbg;
+    }
+    public long getJmbg() {
+        return this.jmbg;
+    }
+
+    public void setImeIPrezime(String imeIPrezime) {
+        this.imeIPrezime = imeIPrezime;
+    }
+    public String getImeIPrezime() {
+        return this.imeIPrezime;
+    }
+
+    public void setBrojDece(int brojDece) {
+        this.brojDece = brojDece;
+    }
+    public int getBrojDece() {
+        return this.brojDece;
+    }
+
+    public void setStepenStrucneSpreme(int stepenStrucneSpreme) {
+        this.stepenStrucneSpreme = stepenStrucneSpreme;
+    }
+    public int getStepenStrucneSpreme() {
+        return this.stepenStrucneSpreme;
+    }
+
+    public void setRadniStaz(int radniStaz) {
+        this.radniStaz = radniStaz;
+    }
+    public int getRadniStaz() {
+        return this.radniStaz;
+    }
+
+    public void stampanjeAlt() {
+        System.out.println("Zaposleni " + getImeIPrezime() + " sa jmbg-om " + getJmbg() + " ima " + getBrojDece() + " dece, " + getRadniStaz() + " godine/a radnog staza sa " + getStepenStrucneSpreme() + ". stepenom strucne spreme");
+        System.out.println("Kredit odobren? " + kreditSposoban() + " uz " + daniGodisnje() + " dana godisnjeg odmora.");
+    }
+    //-------------------------------------------------------------------
+
+    public double koeficijent() {
+        double koeficijent = 0;
+        switch (this.stepenStrucneSpreme) {
+            case 1:
+                koeficijent = 1.03;
+                break;
+            case 2:
+                koeficijent = 1.65;
+                break;
+            case 3:
+                koeficijent = 2.00;
+                break;
+            case 4:
+                koeficijent = 2.27;
+                break;
+            case 5:
+                koeficijent = 2.88;
+                break;
+            case 6:
+                koeficijent = 3.09;
+                break;
+            case 7:
+                koeficijent = 3.40;
+                break;
+            case 8:
+                koeficijent = 4.12;
+                break;
+
+        } return koeficijent;
+    }
+
+    public double minuliRad() {
+        if (this.radniStaz < 10) {
+            return 0.05;
+        } else if (this.radniStaz < 20) {
+            return 0.75;
+        } else {
+            return 1.0;
+        }
+    }
+
+    public double plata() {
+        double k = this.koeficijent();
+        double mr = this.minuliRad();
+        return 2500 + (k + mr) * 10000;
+    }
+
+    public boolean kreditSposoban() {
+        double plata = this.plata();
+        return plata > 5000;
+    }
+
+    public int daniGodisnje() {
+        return 22 + (this.brojDece * 2);
+    }
+}
+
+----------------------------------------------------------------------
+package KlaseRadnik;
+
+public class GlavnaKlasaAlt {
+    public static void main(String[] args) {
+
+        RadnikAlt ra1 = new RadnikAlt();
+        ra1.setImeIPrezime("Zeljko Ilic");
+        ra1.setJmbg(1231231231L);
+        ra1.setBrojDece(3);
+        ra1.setRadniStaz(19);
+        ra1.setStepenStrucneSpreme(3);
+        ra1.stampanjeAlt();
+
+
+    }
+}
+

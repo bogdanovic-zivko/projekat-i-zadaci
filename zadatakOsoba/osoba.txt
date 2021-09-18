@@ -1,0 +1,120 @@
+Zadatak:
+-Kreirati klasu Osoba koja od atributa ima: ime i prezime, jmbg. Konstruktore, getere i setere. Metodu za stampanje podataka u formatu:
+ime i prezime, jmbg
+-Kreirati klasu Student koja nasledjuje klasu Osoba, koja od dodatih atributa ima broj indeksa. Konstruktore, getere i setere. Metodu stampaj koja stampa podatke u formatu:
+ime i prezime, jmbg, broj indeksa
+-Kreirati klasu Profesor koja nasledjuje klasu Osoba, koja od dodatih atributa ima naziv predmeta koji predaje. Konstruktor, getere i setere. Metodu stampaj koja stampa podatke u formatu:
+ime i prezime, jmbg, predmet.
+U glavnoj klasi kreirati 2 studenta i 2 profesora.
+
+
+package OsobaNasledjivanje;
+
+public class Osoba {
+    private String imePrezime;
+    private String jmbg;
+
+    public Osoba(String imePrezime, String jmbg) {
+        this.imePrezime = imePrezime;
+        this.jmbg = jmbg;
+    }
+
+    public String getImePrezime() {
+        return imePrezime;
+    }
+
+    public void setImePrezime(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
+
+    public String getJmbg() {
+        return jmbg;
+    }
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
+    }
+
+
+
+}
+
+--------------------------------------------------------------------
+package OsobaNasledjivanje;
+
+public class Student extends Osoba{
+
+    private int brojIndeksa;
+
+    public Student(String imePrezime, String jmbg, int brojIndeksa) {
+        super(imePrezime, jmbg);
+        this.brojIndeksa = brojIndeksa;
+    }
+
+    public int getBrojIndeksa() {
+        return brojIndeksa;
+    }
+
+    public void setBrojIndeksa(int brojIndeksa) {
+        this.brojIndeksa = brojIndeksa;
+    }
+
+    public void stampanje() {
+        System.out.println(super.getImePrezime() + ", " + super.getJmbg() + ", " + this.brojIndeksa);
+    }
+}
+
+--------------------------------------------------------------------
+package OsobaNasledjivanje;
+
+public class Profesor extends Osoba{
+    private String predmet;
+
+    public Profesor(String imePrezime, String jmbg, String predmet) {
+        super(imePrezime, jmbg);
+        this.predmet = predmet;
+    }
+
+    public String getPredmet() {
+        return predmet;
+    }
+
+    public void setPredmet(String predmet) {
+        this.predmet = predmet;
+    }
+
+    public void stampanje() {
+        System.out.println(super.getImePrezime() + ", " + super.getJmbg()
+                + ", " + this.predmet);
+    }
+}
+
+---------------------------------------------------------------------------
+package OsobaNasledjivanje;
+
+public class GlavnaKlasa {
+    public static void main(String[] args) {
+
+        Student s1 = new Student("Milan Panic", "19826615015", 16752);
+        Student s2 = new Student("Milica Ivic", "16592501512", 912365965);
+        s1.stampanje();
+        s2.stampanje();
+
+        Profesor p1 = new Profesor("Isidora Paunovic", "12851895", "Matematika");
+        Profesor p2 = new Profesor("Nikola Stavrov", "125615912", "Istorija likovne umetnosti");
+        p1.stampanje();
+        p2.stampanje();
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

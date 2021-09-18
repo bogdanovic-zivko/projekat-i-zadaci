@@ -1,0 +1,211 @@
+package Vozilo;
+
+public class MotornoVozilo {
+    private int brojVrata;
+    private int brojTockova;
+    private String registracija;
+
+    public MotornoVozilo(int brojVrata, int brojTockova, String registracija) {
+        this.brojVrata = brojVrata;
+        this.brojTockova = brojTockova;
+        this.registracija = registracija;
+    }
+
+    public int getBrojVrata() {
+        return brojVrata;
+    }
+
+    public void setBrojVrata(int brojVrata) {
+        this.brojVrata = brojVrata;
+    }
+
+    public int getBrojTockova() {
+        return brojTockova;
+    }
+
+    public void setBrojTockova(int brojTockova) {
+        this.brojTockova = brojTockova;
+    }
+
+    public String getRegistracija() {
+        return registracija;
+    }
+
+    public void setRegistracija(String registracija) {
+        this.registracija = registracija;
+    }
+
+    public void stampanje(){
+        System.out.println("Vozilo sa registarskim tablicama " + this.registracija +
+                " ima " + this.brojTockova + " tockova i " + this.brojVrata + " vrata.");
+    }
+}
+--------------------------------------------------------------
+package Vozilo;
+
+public class Kamion extends MotornoVozilo{
+
+    private int tezina;
+    private int brojPrikolica;
+    private String tip;
+
+    public Kamion(int brojVrata, int brojTockova, String registracija, int tezina, int brojPrikolica, String tip) {
+        super(brojVrata, brojTockova, registracija);
+        this.tezina = tezina;
+        this.brojPrikolica = brojPrikolica;
+        this.tip = tip;
+    }
+
+    public int getTezina() {
+        return tezina;
+    }
+
+    public void setTezina(int tezina) {
+        this.tezina = tezina;
+    }
+
+    public int getBrojPrikolica() {
+        return brojPrikolica;
+    }
+
+    public void setBrojPrikolica(int brojPrikolica) {
+        this.brojPrikolica = brojPrikolica;
+    }
+
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
+
+    public void stampanje(){
+        System.out.println(this.tip + " kamion je tezak " +
+                this.tezina + " tona i ima " + this.brojPrikolica + " prikolice.");
+        System.out.println("Vozilo ima " + super.getBrojTockova() + " tockova.");
+    }
+}
+--------------------------------------------------------------------
+
+
+package Vozilo;
+
+public class Autobus extends MotornoVozilo{
+    private int brojSedista;
+    private boolean mestoZaStajanje;
+    private String tipAutobusa;
+
+    public Autobus(int brojVrata, int brojTockova, String registracija, int brojSedista, boolean mestoZaStajanje, String tipAutobusa) {
+        super(brojVrata, brojTockova, registracija);
+        this.brojSedista = brojSedista;
+        this.mestoZaStajanje = mestoZaStajanje;
+        this.tipAutobusa = tipAutobusa;
+    }
+
+    public int getBrojSedista() {
+        return brojSedista;
+    }
+
+    public void setBrojSedista(int brojSedista) {
+        this.brojSedista = brojSedista;
+    }
+
+    public boolean isMestoZaStajanje() {
+        return mestoZaStajanje;
+    }
+
+    public void setMestoZaStajanje(boolean mestoZaStajanje) {
+        this.mestoZaStajanje = mestoZaStajanje;
+    }
+
+    public String getTipAutobusa() {
+        return tipAutobusa;
+    }
+
+    public void setTipAutobusa(String tipAutobusa) {
+        this.tipAutobusa = tipAutobusa;
+    }
+
+    public void stampanje() {
+        System.out.println(this.tipAutobusa + " autobus ima " + this.brojSedista + " broj sedista.");
+        if (this.mestoZaStajanje) { //2. nacin - this.mestoZaStajanje = true ) ...
+            System.out.print("Ima ");
+        } else {
+            System.out.print("Nema ");
+        }
+        System.out.println("mesta za stajanje.");
+    }
+}
+-------------------------------------------------------------------
+
+package Vozilo;
+
+public class Prikolica extends Kamion{
+    private String tipPrikolice;
+    private String nacinPovezivanja;
+    private int brojOsovina;
+
+    public Prikolica(int brojVrata, int brojTockova, String registracija,
+                     int tezina, int brojPrikolica, String tip, String tipPrikolice,
+                     String nacinPovezivanja, int brojOsovina) {
+        super(brojVrata, brojTockova, registracija, tezina, brojPrikolica, tip);
+        this.tipPrikolice = tipPrikolice;
+        this.nacinPovezivanja = nacinPovezivanja;
+        this.brojOsovina = brojOsovina;
+    }
+
+    public String getTipPrikolice() {
+        return tipPrikolice;
+    }
+
+    public void setTipPrikolice(String tipPrikolice) {
+        this.tipPrikolice = tipPrikolice;
+    }
+
+    public String getNacinPovezivanja() {
+        return nacinPovezivanja;
+    }
+
+    public void setNacinPovezivanja(String nacinPovezivanja) {
+        this.nacinPovezivanja = nacinPovezivanja;
+    }
+
+    public int getBrojOsovina() {
+        return brojOsovina;
+    }
+
+    public void setBrojOsovina(int brojOsovina) {
+        this.brojOsovina = brojOsovina;
+    }
+
+    public void stampanje() {
+        System.out.println("Prikolica ima " + this.brojOsovina + " osovina, povezana je " +
+                this.nacinPovezivanja + ". Povezana je na " + super.getTip() + " kamion.");
+    }
+
+}
+
+
+-----------------------------------------------------------------------
+
+package Vozilo;
+
+public class GlavnaKlasa {
+    public static void main(String[] args) {
+
+        MotornoVozilo v1 = new MotornoVozilo(4, 4, "BG-001-AA");
+        //v1.stampanje();
+
+        Kamion k1 = new Kamion(2, 6, "PO-015-OS", 4, 2, "Tegljac");
+        //k1.stampanje();
+
+        Autobus a1 = new Autobus(2, 8, "AR-901-AR", 52, false, "Solo");
+        //a1.stampanje();
+
+        Prikolica p1 = new Prikolica(0, 2, "AA-010-ZR", 1, 1, "tegljac", "cisterna", "tvrda ruda", 1);
+        p1.stampanje();
+
+    }
+
+}

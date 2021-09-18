@@ -1,0 +1,30 @@
+Zadatak 1:
+Napraviti listu od 4 elementa ovim redom: Voli, 3, Ana, Milovana.
+Potrebno je obrisati element i sortirati listu da na ispisu pise "Ana Voli Milovana"
+
+package Liste;
+
+import java.util.ArrayList;
+
+public class ListeZadatak {
+    public static void main(String[] args) {
+
+        ArrayList elementi = new ArrayList();
+        elementi.add("Voli");
+        elementi.add(3);
+        elementi.add("Ana");
+        elementi.add("Milovana");
+
+        elementi.remove(1);
+
+        Object voli = elementi.get(0);
+        elementi.set(0, elementi.get(1));
+        elementi.set(1, voli);
+
+        for (int i = 0 ; i < elementi.size(); i++) {
+            System.out.print(elementi.get(i) + " ");
+        }
+
+
+    }
+}
