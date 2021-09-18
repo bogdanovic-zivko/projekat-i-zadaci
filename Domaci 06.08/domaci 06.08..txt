@@ -1,0 +1,35 @@
+Domaci 06.08.2021.
+
+
+1)	Prikazati imena i prezimena glumaca po abecednom redu prezimena
+SELECT first_name,last_name FROM actor ORDER BY last_name ASC;
+
+2) Prikazati koliko ima drzava
+     SELECT DISTINCT COUNT(country) FROM country;
+
+3) Prikazati koliko ima besplatnih filmova u tabeli payment
+    SELECT COUNT(amount) FROM payment WHERE amount=0;
+
+4) Prikazati koliko filmova je iznajmljeno i vraceno u maju mesecu
+    SELECT COUNT(rental_id)FROM rental WHERE
+     rental_date BETWEEN '2005-05-01'AND '2005-05-31'AND
+     return_date BETWEEN '2005-05-01'AND '2005-05-31’;
+
+5) Koja radnja ima vise filmova, 1 ili 2 i kako ste dosli do resenja?
+    SELECT store_id, COUNT(film_id)
+     FROM inventory
+    GROUP BY store_id;
+    Ovo uradim, dobijem iznos za obe  radnje, prva  2270, a radnja dva 2311. E tu zabadam. 
+Uradim SELECT COUNT(film_id)FROM inventory WHERE store_id=2 I dobijem ga kao veci broj ali ne mogu da nadjem nacin kako da sve povezem u jednu naredbu ojom bi uradio poredjenje. Pokusavao sam sve moguce kombinacije I sa AND, MAX, ORDER BY, sve sto mi je palo na pamet ali nesto ispustam iz vida I ne mogu da dobijem ocekivan ishod.
+
+
+
+6) Prevesti kolone title, description, release_year, rental_rate, length i rental_duration na srpski jezik
+SELECT title AS "naslov",description AS "opis",release_year AS "godina_izdanja",
+rental_rate AS "iznos_zakupa",length AS "trajanje",
+rental_duration AS "trajanje_zakupa"
+from film;
+
+7) Prikazati koliko avenija ima u okrugu California
+    SELECT COUNT(address)FROM address WHERE address
+     LIKE '%Avenue%' AND district='California';
