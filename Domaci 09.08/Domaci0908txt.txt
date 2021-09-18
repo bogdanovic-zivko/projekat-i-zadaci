@@ -1,0 +1,31 @@
+Domaci 09.08.2021
+
+
+1.Select only film titles that are not in the inventory
+SELECT film.title FROM film Left JOIN inventory
+ON film.film_id = inventory.film_id
+WHERE inventory_id IS NULL;
+
+2.Find Customers who have payment
+SELECT DISTINCT customer.customer_id,first_name,last_name FROM customer
+INNER JOIN payment ON customer.customer_id = payment.customer_id;
+
+3. Find maximum length of film grouped by film category
+SELECT name, MAX(length) 
+FROM film
+INNER JOIN film_category
+ON film.film_id = film_category.film_id
+INNER JOIN category
+ON category.category_id = film_category.category_id
+GROUP BY name;
+
+
+5.Find films whose category is either Action or Drama
+(zadatak sa zvezdicom - slicno kao levi9 interview): Find each Staff name for each customer who have payment
+SELECT film.title,category.name
+FROM film
+INNER JOIN film_category
+ON film.film_id=film_category.film_id
+INNER JOIN category
+ON film_category.category_id=category.category_id
+WHERE category.name IN ('Action', 'Drama');

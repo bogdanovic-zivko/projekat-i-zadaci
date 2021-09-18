@@ -1,0 +1,40 @@
+
+Domaci 23.08.2021
+
+
+Funkcije1: Napisati program koji ce procitati 3 cela broja sa standardnog ulaza
+ (znaci da korisnik unosi tri broja) i taj program treba da pozove i ispise
+ (u mainu) najmanji od ta tri unesena broja.
+ package nizovi;
+
+import java.util.Scanner;
+
+public class Domaci1 {
+
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		int[] unos = new int[3];
+		for (int i = 0; i < unos.length; i++) {
+			System.out.println("Unesi broj:");
+			unos[i] = scanner.nextInt();
+		}
+		scanner.close();
+
+		int min = minimum(unos);
+		System.out.println("\n Najmanji broj je: " + min);
+
+	}
+
+	private static int minimum(int[] unos) {
+		int min = unos[0];
+		for (int i = 0; i < unos.length; i++) {
+			if (min > unos[i]) {
+				min = unos[i];
+			}
+		}
+		return min;
+	}
+}
+ 

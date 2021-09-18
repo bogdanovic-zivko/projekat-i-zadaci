@@ -1,0 +1,47 @@
+
+
+
+package primer01;
+
+import java.util.Scanner;
+
+public class Zadaci2 {
+
+	public static void main(String[] args) {
+/*Nakon toga preko skenera treba da
+ *  unesete ukupan broj medalja koliko je Srbija osvojila na olimpijskim igrama
+ *  i ukupan broj zlatnih medalja koliko je Srbija osvojila na olimpijskim igrama,
+ *   na kraju treba odstampati procenat zlatnih medalja u odnosu na ukupan broj medalja. */
+		
+		
+		
+		Scanner zivko7 = new Scanner(System.in);
+		System.out.println("Unesite ukupan broj medalja koje je osvojila Srbija na olimpijskim igrama:");
+		String ukm = zivko7.nextLine();
+		
+		System.out.println("Unesite broj osvojenih zlatnih medalja koje je osvojila Srbija na olimpijskim igrama:");
+		String zlm = zivko7.nextLine();
+		
+		double ukupno = 9;
+		double zlato = 3;
+		double r = ukupno / zlato * 10;
+		
+		System.out.println("Srbija je osvojila ukupno " + ukm + " medalja na olimpijskim igrama.");
+		System.out.println("Srbija je osvojila " + zlm + " zlatne medalje na olimpijskim igrama.");
+		System.out.println("Procenat zlatnih u odnosu na ukupan broj medalja je: " + r + "%.");
+		
+		zivko7.close();
+		
+		
+	}
+
+}
+
+Unesite ukupan broj medalja koje je osvojila Srbija na olimpijskim igrama:
+9
+Unesite broj osvojenih zlatnih medalja koje je osvojila Srbija na olimpijskim igrama:
+3
+Srbija je osvojila ukupno 9 medalja na olimpijskim igrama.
+Srbija je osvojila 3 zlatne medalje na olimpijskim igrama.
+Procenat zlatnih u odnosu na ukupan broj medalja je: 30.0%.
+

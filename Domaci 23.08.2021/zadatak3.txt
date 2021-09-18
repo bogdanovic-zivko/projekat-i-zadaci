@@ -1,0 +1,89 @@
+
+Domaci 23.08.2021
+
+
+
+ 
+ DodatniFunkcije3: -> spojena prva dva zadatka sa malo izmenjenim zahtevima
+ -> Napisati program koji ce procitati 3 cela broja sa standardnog ulaza i poziva i ispisuje dve metode.
+ Prva ispisuje zbir tri unesena broja,  a druga vraca najveci od unetih brojeva.
+ package nizovi;
+
+import java.util.Scanner;
+
+public class Domaci3 {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		int[] unos = new int[3];
+		for (int i = 0; i < unos.length; i++) {
+			System.out.println("Unesi broj:");
+			unos[i] = scanner.nextInt();
+		}
+		scanner.close();
+
+		int zbir = sabiranje(unos);
+		int max = maksimum(unos);
+		System.out.println("\nZbir unetih brojeva je: " + zbir + "\nNajveci broj je: " + max);
+
+	}
+
+	private static int sabiranje(int[] unos) {
+		int zbir = unos[0];
+		for (int i = 1; i < unos.length; i++) {
+			zbir += unos[i];
+		}
+		return zbir;
+	}
+
+	private static int maksimum(int[] unos) {
+		int max = unos[0];
+		for (int i = 0; i < unos.length; i++) {
+			if (max < unos[i]) {
+				max = unos[i];
+			}
+		}
+		return max;
+	}
+}
+ package nizovi;
+
+import java.util.Scanner;
+
+public class Domaci3 {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		int[] unos = new int[3];
+		for (int i = 0; i < unos.length; i++) {
+			System.out.println("Unesi broj:");
+			unos[i] = scanner.nextInt();
+		}
+		scanner.close();
+
+		int zbir = sabiranje(unos);
+		int max = maksimum(unos);
+		System.out.println("\nZbir unetih brojeva je: " + zbir + "\nNajveci broj je: " + max);
+
+	}
+
+	private static int sabiranje(int[] unos) {
+		int zbir = unos[0];
+		for (int i = 1; i < unos.length; i++) {
+			zbir += unos[i];
+		}
+		return zbir;
+	}
+
+	private static int maksimum(int[] unos) {
+		int max = unos[0];
+		for (int i = 0; i < unos.length; i++) {
+			if (max < unos[i]) {
+				max = unos[i];
+			}
+		}
+		return max;
+	}
+}

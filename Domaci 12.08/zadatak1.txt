@@ -1,0 +1,21 @@
+package primer01;
+
+import java.util.Scanner;
+
+public class Zadaci1 {
+
+	public static void main(String[] args) {
+		/* Napisati program gde deklarisete vase ime, prezime kao string, pol kao char
+		 *  i odstampajte adekvatno sva tri unosa.*/
+
+		
+		String ime = "Zivko";
+		System.out.println("Moje ime je: " + ime);
+		String prezime = "Bogdanovic";
+		System.out.println("Moje prezime je: " + prezime);
+		char pol = 'M';
+		System.out.println("Pol: " + pol);
+		
+Moje ime je: Zivko
+Moje prezime je: Bogdanovic
+Pol: M

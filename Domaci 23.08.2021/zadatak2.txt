@@ -1,0 +1,37 @@
+
+Domaci 23.08.2021
+
+
+
+ Funkcije2: Napisati program koji ce procitati 3 cela broja sa standardnog ulaza
+ i taj program treba da pozove i vrati (u mainu) proizvod unetih brojeva.
+ package nizovi;
+
+import java.util.Scanner;
+
+public class Domaci2 {
+ 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		int[] unos = new int[3];
+		for (int i = 0; i < unos.length; i++) {
+			System.out.println("Unesi broj:");
+			unos[i] = scanner.nextInt();
+		}
+		scanner.close();
+
+		int proizvod = product(unos);
+		System.out.println("\nProizvod unetih brojeva je: " + proizvod);
+	}
+
+	private static int product(int[] unos) {
+		int proizvod = unos[0];
+		for (int i = 1; i < unos.length; i++) {
+			proizvod *= unos[i];
+		}
+		return proizvod;
+	}
+
+}
+ 
+ 

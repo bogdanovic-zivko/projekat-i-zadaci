@@ -1,0 +1,43 @@
+Domaci 13.08.2021.
+								  
+-Napisati program gde preko skenera unesete broj, ako je broj manji od 10 
+onda ga pomnoziti sa 100, ako je broj veci od 100 onda ga podeliti sa 10. 
+Na kraju zakomentarisite koje brojeve ste koristili za proveru programa.
+
+
+package treci;
+
+import java.util.Scanner;
+
+public class Zadatak10 {
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		
+        System.out.println("Unesi broj ");
+        
+        int broj = scanner.nextInt();
+        
+        if(broj < 10) {
+            
+            //Koristio sam 5, 10, 50
+            
+            int pomnozitiBroj = broj * 100;
+            System.out.println("Broj je <  10 i pomnozen je sa 100: " + pomnozitiBroj);
+        }else if(broj > 100) {
+            
+            //Koristio sam 90, 100 ,110
+            
+            double podelitiBroj = broj / 10;
+            System.out.println("Broj je veci od 100 i podeljen je sa 10: " + podelitiBroj);
+        }else {
+            
+            System.out.println("Broj nije manji od 10 i nije veci od 100");
+        }
+        
+        scanner.close();
+    }
+
+
+	}
