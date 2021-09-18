@@ -1,0 +1,59 @@
+
+
+/*Zooloski vrt
+U zoovrtu obitavaju razne zivotinje. Sve imaju svoju vrstu (kicmenjaci, beskicmenjaci), konkretan naziv i cime se hrane.
+Ribe su kicmenjaci koje karakterise mesto obitavanja (slatka, slana voda), broj peraja, vrsta peraja
+Sisari su kicmenjaci koje se razlikuju po boji dlake, nacinu ishrane (biljojedi, mesojedi, svastojedi), i covekovoj podeli na divlje i domace.
+Napraviti klasu Staniste u kom se nalazi lista zivotinja koje u tom stanistu zive. Staniste takodje ima naziv koji moze da se dohvati ali ne i postavi.
+Ispisati bar jednog sisara i jednu ribu kao vrstu zivotinje.
+Ispisati bar jedno staniste.
+Jednom sisaru zameniti ulogu koju mu je covek dodelio.*/
+
+
+import java.util.List;
+
+public class Staniste {
+
+    /*
+    Napraviti klasu Staniste u kom se nalazi lista zivotinja koje u tom stanistu zive.
+    Staniste takodje ima naziv koji moze da se dohvati ali ne i postavi.
+     */
+
+    private List<Zivotinje> zivotinje;
+    private String naziv;
+
+    public Staniste(List<Zivotinje> zivotinje, String naziv) {
+        this.zivotinje = zivotinje;
+        this.naziv = naziv;
+    }
+
+    public List<Zivotinje> getZivotinje() {
+        return zivotinje;
+    }
+
+    public String getNaziv() {
+        return naziv;
+    }
+
+    // nije naglaseno u zadatku, ali nove zivotinje mogu da se nastane negde
+    public void dodajZivotinju(Zivotinje z) {
+        zivotinje.add(z);
+    }
+
+    // nije naglaseno u zadatku ali zivotinje mogu da odu iz nekog stanista
+    public void skloniZivotinju(Zivotinje z){
+        zivotinje.remove(z);
+
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(naziv).append(" u kom zive: ");
+        for (int i = 0; i <zivotinje.size(); i++){
+            sb.append(zivotinje.get(i).getNaziv()).append(" ");
+        }
+        return sb.toString();
+    }
+}

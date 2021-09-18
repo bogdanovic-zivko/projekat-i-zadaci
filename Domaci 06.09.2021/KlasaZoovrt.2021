@@ -1,0 +1,60 @@
+
+
+/*Zooloski vrt
+U zoovrtu obitavaju razne zivotinje. Sve imaju svoju vrstu (kicmenjaci, beskicmenjaci), konkretan naziv i cime se hrane.
+Ribe su kicmenjaci koje karakterise mesto obitavanja (slatka, slana voda), broj peraja, vrsta peraja
+Sisari su kicmenjaci koje se razlikuju po boji dlake, nacinu ishrane (biljojedi, mesojedi, svastojedi), i covekovoj podeli na divlje i domace.
+Napraviti klasu Staniste u kom se nalazi lista zivotinja koje u tom stanistu zive. Staniste takodje ima naziv koji moze da se dohvati ali ne i postavi.
+Ispisati bar jednog sisara i jednu ribu kao vrstu zivotinje.
+Ispisati bar jedno staniste.
+Jednom sisaru zameniti ulogu koju mu je covek dodelio.*/
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Zoovrt {
+
+    /*
+    Ispisati bar jednog sisara i jednu ribu kao vrstu zivotinje.
+    Ispisati bar jedno staniste.
+    Jednom sisaru zameniti ulogu koju mu je covek dodelio.
+     */
+
+    public static void main(String[] args) {
+
+        List<Zivotinje> zivotinje = new ArrayList<Zivotinje>();
+
+        Sisari s1 = new Sisari("kicmenjak","panter",  "antilope", "crna", "mesojed");
+        Sisari s2 = new Sisari("kicmenjak","svinja",  "pomije", "roze", "svastojed");
+        Ribe r1 = new Ribe("kicmenjak", "skusa", "racici", "slana morska", 8, "racvasto");
+        Ribe r2 = new Ribe("kicmenjak", "som", "druge ribe", "slatka recna", 7, "zaobljeno");
+
+        s1.setUloga("divlje zivotinje");
+        s2.setUloga("domace zivotinje");
+
+        s2.setBojaDlake("sarena");
+
+
+        zivotinje.add(s1);
+        zivotinje.add(s2);
+        zivotinje.add(r1);
+        zivotinje.add(r2);
+        zivotinje.remove(r1);
+
+        Staniste st = new Staniste(zivotinje, "Zoovrt");
+
+        System.out.println(st);
+        System.out.println(r1);
+        System.out.println(s2);
+        s1.setUloga("ljubimac");
+        System.out.println(s1);
+
+
+
+
+
+
+
+
+    }
+}

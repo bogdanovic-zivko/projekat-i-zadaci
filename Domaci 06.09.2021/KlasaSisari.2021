@@ -1,0 +1,65 @@
+
+
+/*Zooloski vrt
+U zoovrtu obitavaju razne zivotinje. Sve imaju svoju vrstu (kicmenjaci, beskicmenjaci), konkretan naziv i cime se hrane.
+Ribe su kicmenjaci koje karakterise mesto obitavanja (slatka, slana voda), broj peraja, vrsta peraja
+Sisari su kicmenjaci koje se razlikuju po boji dlake, nacinu ishrane (biljojedi, mesojedi, svastojedi), i covekovoj podeli na divlje i domace.
+Napraviti klasu Staniste u kom se nalazi lista zivotinja koje u tom stanistu zive. Staniste takodje ima naziv koji moze da se dohvati ali ne i postavi.
+Ispisati bar jednog sisara i jednu ribu kao vrstu zivotinje.
+Ispisati bar jedno staniste.
+Jednom sisaru zameniti ulogu koju mu je covek dodelio.*/
+
+
+
+
+public class Sisari extends Kicmenjaci{
+    /*
+    Sisari su kicmenjaci koje se razlikuju po boji dlake,
+    nacinu ishrane (biljojedi, mesojedi, svastojedi), i covekovoj podeli na divlje i domace
+     */
+
+    private String bojaDlake;
+    private String nacinIshrane;
+    private String uloga;
+
+    public Sisari(String vrsta, String naziv, String hrana, String bojaDlake, String nacinIshrane) {
+        super(vrsta, naziv, hrana);
+        this.bojaDlake = bojaDlake;
+        this.nacinIshrane = nacinIshrane;
+    }
+
+    public String getBojaDlake() {
+        return bojaDlake;
+    }
+
+    public String getNacinIshrane() {
+        return nacinIshrane;
+    }
+
+    public String getUloga() {
+        return uloga;
+    }
+
+    // mogu da menjaju boju dlake
+    public void setBojaDlake(String bojaDlake) {
+        this.bojaDlake = bojaDlake;
+    }
+
+    // mogu da menjaju "ulogu" koju im je covek dodelio
+    public void setUloga(String uloga) {
+        this.uloga = uloga;
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append(" sto znaci da je u stvari ").append(nacinIshrane).append(".");
+        sb.append("\n");
+        sb.append(" Dlaka ovoj zivotinji je ").append(bojaDlake).append(".");
+        sb.append("\n");
+        sb.append("Covek je svrstava u kategoriju ").append(uloga).append(".");
+        return sb.toString();
+    }
+}
