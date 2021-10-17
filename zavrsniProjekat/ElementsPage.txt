@@ -1,0 +1,126 @@
+package ProjekatPages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+//klasu nazivam po temu, po onome sto mi dominira na toj strani
+
+public class ElementsPage {
+
+//prvo uvodim drivere
+	
+	WebDriver driver;
+	WebDriverWait wdwait;
+	
+//zatim navodim sve elemente sa stranice	
+	
+	WebElement textBox;
+	WebElement checkBox;
+	WebElement radioButton;
+	WebElement webTables;
+	WebElement buttons;
+	WebElement links;
+	WebElement brokenLinksImages;
+	WebElement uploadDownload;
+	WebElement dynamicProperties;
+	
+//kreiram konstruktore za drivere
+
+	public ElementsPage(WebDriver driver, WebDriverWait wdwait) {
+		super();
+		this.driver = driver;
+		this.wdwait = wdwait;
+	}
+
+	
+// kreiram getere za svaki element
+//iza return stavljam elemente, idem na inspect i unosim njihove lokatore	
+	
+	public void waiter(WebElement element) throws InterruptedException {
+		wdwait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	public WebElement gettextBox() {
+		return driver.findElement(By.id("item-0"));
+	}
+
+	public WebElement getCheckBox() {
+		return driver.findElement(By.id("item-1"));
+	}
+
+	public WebElement getRadioButton() {
+		return driver.findElement(By.id("item-2"));
+	}
+
+	public WebElement getWebTables() {
+		return driver.findElement(By.id("item-3"));
+	}
+
+	public WebElement getButtons() {
+		return driver.findElement(By.id("item-4"));
+	}
+
+	public WebElement getLinks() {
+		return driver.findElement(By.id("item-5"));
+	}
+
+	public WebElement getBrokenLinksImages() {
+		return driver.findElement(By.id("item-6"));
+	}
+
+	public WebElement getUploadDownload() {
+		return driver.findElement(By.id("item-7"));
+	}
+
+	public WebElement getDynamicProperties() {
+		return driver.findElement(By.id("item-8"));
+	}
+
+	
+//radim pregled koda. znaci, ima konstruktor za drivere i getere za elemente
+//mogu da krenem da pravim metode za sve elemente	
+//te metode nazivam kao korake, ono sto bi smo uradili	
+	
+	public void clickTextBoxButton() {
+		this.gettextBox().click();
+	}
+
+	public void clickCheckBoxButton() {
+		this.getCheckBox().click();
+	}
+
+	public void clickRadioBoxButton() {
+		this.getRadioButton().click();
+	}
+
+	public void clickWebTablesButton() {
+		this.getWebTables().click();
+	}
+
+	public void clickButtonsButton() {
+		this.getButtons().click();
+	}
+
+	public void clickLinkButton() {
+		this.getLinks().click();
+	}
+
+	public void clickBrokenLinksImagesButton() {
+		this.getBrokenLinksImages().click();
+	}
+
+	public void clickuploadDownloadButton() {
+		this.uploadDownload.click();
+	}
+	public void clickdynamicPropertiesButton() {
+		this.dynamicProperties.click();
+	}
+	
+//kada pokrenem test, necu nista pisati u testu vec cu samo pozivati ove metode	
+//pages nisu testne klase, tako da ne stavljamo prioritete u njima	
+	
+	
+}

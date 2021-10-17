@@ -1,0 +1,92 @@
+package ProjekatPages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+//pravim klasu za stranu text Box. Za svaku stranu pravimposebnu klasu
+public class TextBoxLogin {
+
+//otvorio sam stranu i gledam koje sve elemente ona ima.
+
+//prvo u ovoj klasi sto radim je uvodim driver i wait driver
+	WebDriverWait wdwait;
+	WebDriver driver;
+	
+// zatim dodajem elemente koje imam na toj stranici i koje cu koristiti
+	WebElement fullName;
+	WebElement email;
+	WebElement currAddress;
+	WebElement permAddress;
+	WebElement submitButton;
+	WebElement errorText;
+	
+//nakon sto sam uneo elemente pravim konstruktor za driver	
+	
+	public TextBoxLogin(WebDriverWait wdwait, WebDriver driver) {
+		super();
+		this.wdwait = wdwait;
+		this.driver = driver;
+	}
+	
+//zatim pravim getere za svaki element koji imam na toj stranici	
+//kada unesem getere, iza return stavljam elemente, idem na inspect i unosim njihove lokatore	
+	
+	public void waiter(WebElement element) throws InterruptedException {
+		wdwait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+	public WebElement getFullName() {
+		return driver.findElement(By.id("userName"));
+	}
+	public WebElement getEmail() {
+		return driver.findElement(By.id("userEmail"));
+	}
+	public WebElement getCurrAddress() {
+		return driver.findElement(By.id("currentAddress"));
+	}
+	public WebElement getPermAddress() {
+		return driver.findElement(By.id("currentAddress"));
+	}
+	public WebElement getSubmitButton() {
+		return driver.findElement(By.id("submit"));
+	}
+		public WebElement getErrorText() {
+			return driver.findElement(By.id("error"));
+		}
+		
+//uneo sam konstruktor za driver i getere za sve elemente. Pregledam da li sam sve uneo.
+//nakon sto utvrdim da je sve u redu pravim metode sa tim elementima.
+//te metode nazivam kao korake, kao ono sto smo uradili
+//idem redom po elementima radi lepseg izgleda koda i izbacivanja mogucnosti da neki element preskocim		
+//osle , kada budem pokrenuo test, necu nista pisati u testu vec cu samo pozivati ove metode	
+//pages nisu testne klase, tako da za njih ne stavljam prioritete.		
+	
+	public void insertFullName(String fullNameData) {
+		this.getFullName().clear();
+		this.getFullName().sendKeys(fullNameData);
+	}
+	public void insertEmail(String emailData) {
+		this.getEmail().clear();
+		this.getEmail().sendKeys(emailData);
+	}
+	public void insertCurrAddress(String currAddressData) {
+		this.getCurrAddress().clear();
+		this.getCurrAddress().sendKeys(currAddressData);
+	}
+	public void insertPermAddress(String permAddressData) {
+		this.getCurrAddress().clear();
+		this.getCurrAddress().sendKeys(permAddressData);
+	}
+	public void clickSubmitButton() {
+		this.getSubmitButton().click();
+	}
+	public String errorText() {
+		wdwait.until(ExpectedConditions.elementToBeClickable(By.id("error")));
+		return getErrorText().getText();
+	}
+
+	
+	}

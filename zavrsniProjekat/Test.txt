@@ -1,0 +1,284 @@
+package ProjekatTest;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import ProjekatBase.ProjekatBase;
+
+public class TestProjekat extends ProjekatBase {
+
+
+//test klasa mi nasleedjuje Base klasu
+//Ovde krecem prvo sa Before Method 
+//u test klasi pravimo testove
+
+	
+	@BeforeMethod
+	public void pageSetUp() {
+		driver.manage().window().maximize();
+        driver.navigate().to("https://demoqa.com/");
+ 
+//ovde ubacujem povecanje prozora radi preglednosti kao i link ka stranici koja nam je u zadatku
+        
+	}
+
+//krecem sa importovanjem testova
+	
+	@Test (priority = 10)
+	public void successfullLogIn() {
+		
+//i sada ovde pozivam redom metode iz page klase koju testiram
+//npr. sa stranice textboxLogin ja mu kazem za username, uzmi iz excel tabele tekst,
+//koji se nalazi u sheetu koji se zove "data, i u njemu u prvom redu i prvoj koloni taj neki podatak
+//lokacija u excelu se podredjuje tako sto polja uvek krecem da brojim od 0.
+//umesto da ovde kucamo podatke mi ih samo povlacimo iz baze podataka, 
+//koju nam u konkretnom slucaju ovde predstavlja excel tabela
+//obavezno pre pokretanja testa sacuvati tabelu posto ukoliko postoji bilo koji podatak u tabeli koji nije sacuvan
+//necemo vise biti u mogucnosti da pokrenemo tabelu
+		
+		String FullName = excel1reader.getStringData("data", 1, 1);
+		String Email = excel1reader.getStringData("data", 1, 3);
+		String CurrentAddress = excel1reader.getStringData("data", 1, 5);
+		String PermanentAddress = excel1reader.getStringData("data", 1, 7);
+		
+		
+		textboxlogin.insertFullName(FullName);
+		textboxlogin.insertEmail(Email);
+		textboxlogin.insertCurrAddress(CurrentAddress);
+		textboxlogin.insertPermAddress(PermanentAddress);
+        textboxlogin.clickSubmitButton();
+        }
+	
+	
+	
+	@Test (priority = 20)
+	public void incorrectFullname() throws InterruptedException {
+		for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+			
+			String FullName = excel1reader.getStringData("data", i, 1);
+			String Email = excel1reader.getStringData("data", 1, 3);
+			String CurrentAddress = excel1reader.getStringData("data", 1, 5);
+			String PermanentAddress = excel1reader.getStringData("data", 1, 7);
+			String textFullname = excel1reader.getStringData("data", 1, 10);
+			
+			
+			textboxlogin.insertFullName(FullName);
+			textboxlogin.insertEmail(Email);
+			textboxlogin.insertCurrAddress(CurrentAddress);
+			textboxlogin.insertPermAddress(PermanentAddress);
+	        textboxlogin.clickSubmitButton();
+			wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+		}
+		}
+		
+		@Test (priority = 30)
+		public void incorrectEmail() throws InterruptedException {
+		for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+				
+				String FullName = excel1reader.getStringData("data", 1, 1);
+				String Email = excel1reader.getStringData("data", i, 3);
+				String CurrentAddress = excel1reader.getStringData("data", 1, 5);
+				String PermanentAddress = excel1reader.getStringData("data", 1, 7);
+				String textFullname = excel1reader.getStringData("data", 1, 10);
+				
+				
+				textboxlogin.insertFullName(FullName);
+				textboxlogin.insertEmail(Email);
+				textboxlogin.insertCurrAddress(CurrentAddress);
+				textboxlogin.insertPermAddress(PermanentAddress);
+		        textboxlogin.clickSubmitButton();
+				wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+				
+			}
+		}
+	
+		@Test (priority = 40)
+				public void incorrectCurrentAddress()  throws InterruptedException {
+				for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {	
+					String FullName = excel1reader.getStringData("data", 1, 1);
+					String Email = excel1reader.getStringData("data", 1, 3);
+					String CurrentAddress = excel1reader.getStringData("data", i, 5);
+					String PermanentAddress = excel1reader.getStringData("data", 1, 7);
+					String textFullname = excel1reader.getStringData("data", 1, 10);
+					
+					
+					textboxlogin.insertFullName(FullName);
+					textboxlogin.insertEmail(Email);
+					textboxlogin.insertCurrAddress(CurrentAddress);
+					textboxlogin.insertPermAddress(PermanentAddress);
+			        textboxlogin.clickSubmitButton();
+					wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+						
+				}	
+						
+					}
+						
+	@Test (priority = 50)	
+	          public void incorrectPermAddress() throws InterruptedException {
+		      for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+		  	
+			String FullName = excel1reader.getStringData("data", 1, 1);
+			String Email = excel1reader.getStringData("data", 1, 3);
+			String CurrentAddress = excel1reader.getStringData("data", 1, 5);
+			String PermanentAddress = excel1reader.getStringData("data", i, 7);
+			String textFullname = excel1reader.getStringData("data", 1, 10);
+			
+			
+			textboxlogin.insertFullName(FullName);
+			textboxlogin.insertEmail(Email);
+			textboxlogin.insertCurrAddress(CurrentAddress);
+			textboxlogin.insertPermAddress(PermanentAddress);
+	        textboxlogin.clickSubmitButton();
+			wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+		}
+	
+	}	
+		@Test (priority = 60)
+		public void successfullLogIn1() {
+			String FirstName = excel1reader.getStringData("data", 9, 1);
+			String LastName = excel1reader.getStringData("data", 9, 3);
+			String Email = excel1reader.getStringData("data", 1, 3);
+			String Mobile = excel1reader.getStringData("data", 9, 5);
+			
+			
+			
+			
+			practiceformpage.insertfirstName(FirstName);
+			practiceformpage.insertEmail(Email);
+			practiceformpage.insertlastName(LastName);
+			practiceformpage.insertMobile(Mobile);
+			practiceformpage.getGoToRegistration();
+		}
+			
+	
+		@Test (priority = 70) 
+			public void incorrectFirstName() throws InterruptedException {
+				for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+					String FirstName = excel1reader.getStringData("data", i, 1);
+					String LastName = excel1reader.getStringData("data", 9, 3);
+					String Email = excel1reader.getStringData("data", 1, 3);
+					String Mobile = excel1reader.getStringData("data", 9, 5);
+					String textFullname = excel1reader.getStringData("data", 1, 10);
+					
+					
+					
+					practiceformpage.insertfirstName(FirstName);
+					practiceformpage.insertEmail(Email);
+					practiceformpage.insertlastName(LastName);
+					practiceformpage.insertMobile(Mobile);
+					practiceformpage.getGoToRegistration();
+					wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+				}
+					
+		}
+				
+		@Test (priority = 80)
+			   public void incorrectLastName() throws InterruptedException {
+				for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+					String FirstName = excel1reader.getStringData("data", 9, 1);
+					String LastName = excel1reader.getStringData("data", i, 3);
+					String Email = excel1reader.getStringData("data", 1, 3);
+					String Mobile = excel1reader.getStringData("data", 9, 5);
+					String textFullname = excel1reader.getStringData("data", 1, 10);
+					
+					
+					
+					practiceformpage.insertfirstName(FirstName);
+					practiceformpage.insertEmail(Email);
+					practiceformpage.insertlastName(LastName);
+					practiceformpage.insertMobile(Mobile);
+					practiceformpage.getGoToRegistration();
+					wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+				}
+			}
+				
+				@Test (priority = 90)
+				public void incorrectemail() throws InterruptedException {
+					for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+						String FirstName = excel1reader.getStringData("data", 9, 1);
+						String LastName = excel1reader.getStringData("data", 9, 3);
+						String Email = excel1reader.getStringData("data", 1, 3);
+						String Mobile = excel1reader.getStringData("data", 9, 5);
+						String textFullname = excel1reader.getStringData("data", 1, 10);
+						
+						
+						
+						practiceformpage.insertfirstName(FirstName);
+						practiceformpage.insertEmail(Email);
+						practiceformpage.insertlastName(LastName);
+						practiceformpage.insertMobile(Mobile);
+						practiceformpage.getGoToRegistration();
+						wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+					}
+					
+				}
+		@Test (priority = 100)
+		public void incorrectMobile() throws InterruptedException {
+			for (int i = 1; i < excel1reader.getLastRowNumber(); i++) {
+				String FirstName = excel1reader.getStringData("data", 9, 1);
+				String LastName = excel1reader.getStringData("data", 9, 3);
+				String Email = excel1reader.getStringData("data", i, 3);
+				String Mobile = excel1reader.getStringData("data", 9, 5);
+				String textFullname = excel1reader.getStringData("data", 1, 10);
+				
+				
+				
+				practiceformpage.insertfirstName(FirstName);
+				practiceformpage.insertEmail(Email);
+				practiceformpage.insertlastName(LastName);
+				practiceformpage.insertMobile(Mobile);
+				practiceformpage.getGoToRegistration();
+				wdwait.until(ExpectedConditions.presenceOfElementLocated(By.id("error")));
+			}
+			
+//nakon sto smo uradili sve testove zelimo da uradimo proveru da li smo sve dobro uradili.
+//to se radi tako sto se uzmu elementi sa logout stranice i oni se unesu u logout klasu. 
+//zatim kreiramo metode za njih.
+//to je prikazano u sledecem obliku:
+//			public WebElement getSuccessfulLogInText() {
+//			return driver.findElement(By.id("locator"));
+//			}
+//		public String successfulLogInText() {
+//				return getSuccessfulLogInText().getText();
+//	naravno, moramo da  dodamo  lokaciju i u test klasi
+//to je u formi:
+//String button = excel1reader.getStringData(sheetName:"data", rowNumber:1, cellNumber: 7);
+			
+//		zelim da uporedim taj tekst sa tekstom koji nadjem a to radim preko asserta.
+			
+	// Assert.assertEquals(logOutPage.logOutButtonText(), button);
+			//-ovo se odnosi na to da li na onom dugmetu pise logout
+    // Assert.assertEquals(logOutPage.successfulLogInText(), text);
+			//-ovo mi sluzi za proveru teksta na toj stranici
+	//Assert.assertTrue(logoutPage.getLogOutButton().isDisplayed();
+			//-ovo mi je provera da li je dugme prisutno
+			
+//-------------Ovo tri nacina su mi za proveru da li je npr FullName CORRECT
+			
+			//---------------------------------------------------------
+			
+//---------------Poredjenje za INCORRECT FullName mozemo da uradimo na sledeci nacin
+			
+//to mogu npr. uraditi preko for petlje
+//ispisem petlju 
+//for (int i = 1, i < 9, i++) {
+//posto treba da krene da mi broji od prvog stavljam 1, a zatim pogledam koliko opcija imam
+//i onda stavim za jedan vise
+//oko bi stavio vise sistem bi nam izbacio gresku i ne bi povukao podatke
+//pogledam sta mi treba od elemenata i dodelim im lokaciju u excelu
+//moram da odem u textbox klasu i napravim taj objekat npr, mogu da ga nazovem "error".
+// i onda provera za assert
+			//assertEquals(logInPage.getErrorText(), textFullName);
+//
+		}
+	@AfterMethod
+	public void deleteCookies( ) {
+		driver.manage().deleteAllCookies();
+		
+	}
+	}

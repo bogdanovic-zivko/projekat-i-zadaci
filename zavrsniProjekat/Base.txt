@@ -1,0 +1,65 @@
+package ProjekatBase;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+
+import ProjekatPages.ElementsPage;
+import ProjekatPages.HomePage;
+import ProjekatPages.PracticeFormPage;
+import ProjekatPages.RadioButtonPage;
+import ProjekatPages.TextBoxLogin;
+
+public class ProjekatBase {
+
+//nakon sto sam uradio pages klase, u Base package pravim base klasu
+	
+//uvodim driver	
+	public static WebDriver driver;
+	
+//	navodim pages klase koje sam radio ali im dodam nesto da bi ih razlikovao, 
+//tako da cu ih staviti sa malim slovima ovaj put
+	
+	public static PracticeFormPage practiceformpage;
+	public static HomePage homepage;
+	public static TextBoxLogin textboxlogin;
+	public static RadioButtonPage radiobuttonpage;
+	public static ElementsPage elementspage;
+	public Excel1Reader excel1reader;
+	public String homeUrl;
+	public static WebDriverWait wdwait;
+
+//nakon sto sam naveo klase, uvodim TestNG tako sto kreiram BeforeClass
+//ovde u beforeclass stavljam prvo putanju do Seleniuma,
+//zatim Chrome driver i klase iz Pages paketa.
+	
+	@BeforeClass
+	public void setUp() throws IOException {
+		System.setProperty("webdriver.chrome.driver", "driver-lib\\chromedriver.exe");
+		driver = new ChromeDriver();
+		textboxlogin = new TextBoxLogin(wdwait, driver);
+		practiceformpage = new PracticeFormPage(driver);
+		radiobuttonpage = new RadioButtonPage(driver);
+		elementspage = new ElementsPage(driver, wdwait);
+		homepage = new HomePage(driver);
+		wdwait = new WebDriverWait(driver, 20);
+		excel1reader = new Excel1Reader("C:\\Users\\lenovo\\Desktop\\zavrsniIspitTestovi.xlsx");
+	    homeUrl = excel1reader.getStringData("data", 0, 1);
+	   // public void scrollIntoView(WebElement element) {
+	     //   ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	    }
+	
+// na kraju Base klase stavljam Afterclass. I zavrsavam je sa brisanjem svih cookies i zatvaranjem nakon izvrsenja
+	
+	@AfterClass
+	public void tearDown() {
+		driver.manage().deleteAllCookies();
+		driver.close();
+		driver.quit();
+		
+	}
+}
