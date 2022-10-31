@@ -1,4 +1,4 @@
-Domaci 06.08.2021.
+Sql Zadaci / Domaci 06.08.2021.
 
 
 1)	Prikazati imena i prezimena glumaca po abecednom redu prezimena
